@@ -1,22 +1,23 @@
 package ch01;
 
-public class Date {
-    private final int month;
+public class Date implements Comparable<Date> {
+
     private final int day;
+    private final int month;
     private final int year;
 
-    public Date(int m, int d, int y) {
-        month = m;
+    public Date(int d, int m, int y) {
         day = d;
+        month = m;
         year = y;
-    }
-
-    public int month() {
-        return month;
     }
 
     public int day() {
         return day;
+    }
+
+    public int month() {
+        return month;
     }
 
     public int year() {
@@ -24,8 +25,19 @@ public class Date {
     }
 
     @Override
+    public int compareTo(Date that) {
+        if (this.year > that.year) return +1;
+        if (this.year < that.year) return -1;
+        if (this.month > that.month) return +1;
+        if (this.month < that.month) return -1;
+        if (this.day > that.day) return +1;
+        if (this.day < that.day) return -1;
+        return 0;
+    }
+
+    @Override
     public String toString() {
-        return month() + "/" + day() + "/" + year();
+        return month + "/" + day + "/" + year;
     }
 
     public boolean equals(Object x) {
